@@ -33,13 +33,9 @@ void
 on_buttonEnrg_obs_clicked              (GtkButton       *button,
                                         gpointer         user_data);
 
-void
-on_buttonPrec_user_clicked             (GtkButton       *button,
-                                        gpointer         user_data);
 
 void
-on_buttonValider_user_clicked          (GtkButton       *button,
-                                        gpointer         user_data);
+on_buttonValider_user_clicked (GtkButton *objet_graphique,gpointer user_data);
 
 void
 on_buttonajouter_election_clicked      (GtkButton       *button,
@@ -76,4 +72,36 @@ on_button_suptab_clicked               (GtkButton       *button,
 
 void
 on_button_enr_tab_clicked              (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_checkbuttonEtranger_user_toggled    (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_checkbuttonTun_user_toggled         (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_radiobuttonFemmme_user_toggled      (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_radiobuttonHomme_user_toggled       (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_radiobuttonHomme_user_toggled       (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_radiobuttonFemmme_user_toggled      (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_checkbuttonTun_user_toggled         (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_checkbuttonEtranger_user_toggled    (GtkToggleButton *togglebutton,
                                         gpointer         user_data);

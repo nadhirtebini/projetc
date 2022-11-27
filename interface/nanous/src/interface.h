@@ -4,7 +4,6 @@
 
 GtkWidget* create_page_d_acceuil (void);
 GtkWidget* create_gestion_liste_erlectorale_A (void);
-GtkWidget* create_gestion_liste_erlectorale_B (void);
 GtkWidget* create_gestion_liste_erlectorale_C (void);
 GtkWidget* create_gestion_de_liste_electorale_ajout (void);
 GtkWidget* create_Tab_user (void);
@@ -13,9 +12,11 @@ GtkWidget* create_ajout_user (void);
 GtkWidget* create_gestion_des_elections (void);
 GtkWidget* create_ajout_election (void);
 GtkWidget* create_modifier_supprimer_election (void);
-GtkWidget* create_ajouter_une_reclamation (void);
-GtkWidget* create_modifier_une_reclamation (void);
+GtkWidget* create_ajouter_reclamation (void);
+GtkWidget* create_modifier_reclamation (void);
 GtkWidget* create_gestion_bv (void);
 GtkWidget* create_tab_BV (void);
 GtkWidget* create_modifier_election (void);
 GtkWidget* create_supprimer_elec (void);
+GtkWidget* create_supprimer_reclamation (void);
+GtkWidget* create_tab_user1 (void);
