@@ -37,12 +37,12 @@ date Date_l;
 }l_elec;
 
 
-
+reclamation chercher(char id_rec[20], char * filename);
 void ajouter (reclamation rec , int ET,int OU);
-void afficher_rec (GtkWidget *liste);
-/*int modifier (int id_rec, reclamation nouv, char * filename);
-int supprimer(int id_rec, char * filename);
-reclamation chercher(int id_rec, char * filename);
+void afficher_rec (GtkWidget *liste , char* filname);
+/*int modifier (int id_rec, reclamation nouv, char * filename);*/
+void supprimer_rec(char*, char * filename);
+/*reclamation chercher(int id_rec, char * filename);
 int calculer (int Id_l,char * filename);*/
 
 

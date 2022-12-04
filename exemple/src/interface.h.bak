@@ -4,3 +4,4 @@
 
 GtkWidget* create_affichage (void);
 GtkWidget* create_remplissage (void);
+GtkWidget* create_supprimer (void);

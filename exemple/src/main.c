@@ -17,6 +17,8 @@ main (int argc, char *argv[])
 {
   GtkWidget *affichage;
   GtkWidget *remplissage;
+  GtkWidget *supprimer;
+
 
 #ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -33,11 +35,15 @@ main (int argc, char *argv[])
    * The following code was added by Glade to create one of each component
    * (except popup menus), just so that you see something after building
    * the project. Delete any components that you don't want shown initially.
-   */
+   
   affichage = create_affichage ();
-  gtk_widget_show (affichage);
+  gtk_widget_show (affichage);*/
   remplissage = create_remplissage ();
   gtk_widget_show (remplissage);
+/*
+  supprimer = create_supprimer ();
+  gtk_widget_show (supprimer);
+*/
 
   gtk_main ();
   return 0;

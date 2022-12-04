@@ -74,51 +74,54 @@ rename("aux.txt", filename);
     }
 
 }
-
-int supprimer (int id, char * filename)
+*/
+void supprimer_rec (char id [20], char * filename)
 {
 reclamation rec ;
     FILE * f=fopen(filename, "r");
     FILE * f2 =fopen("aux.txt", "w");
-    if((f==NULL) || (f2==NULL))
-return 0;
-else
+    if((f!=NULL) || (f2!=NULL))
+
+
+
     {
-while(fscanf(f,"%d %d %d %d %d %d %s %s",&rec.id_rec,&rec.date_rec.jour_rec,&rec.date_rec.mois_rec,&rec.date_rec.annee_rec,&rec.nbv_rec,&rec.nle_rec,rec.categ_rec,rec.desc_rec)!=EOF)
+while(fscanf(f,"%s %d %d %d %s %s %s %s",rec.id_rec,&rec.date_rec.jour_rec,&rec.date_rec.mois_rec,&rec.date_rec.annee_rec,rec.nbv_rec,rec.nle_rec,rec.categ_rec,rec.desc_rec)!=EOF)
 {
-if(rec.id_rec !=id)
-        fprintf(f2,"%d %d %d %d %d %d %s %s\n",rec.id_rec,rec.date_rec.jour_rec,rec.date_rec.mois_rec,rec.date_rec.annee_rec,rec.nbv_rec,rec.nle_rec,rec.categ_rec,rec.desc_rec);
+if(strcmp(rec.id_rec,id)!=0)
+        fprintf(f2,"%s %d %d %d %s %s %s %s\n",rec.id_rec,rec.date_rec.jour_rec,rec.date_rec.mois_rec,rec.date_rec.annee_rec,rec.nbv_rec,rec.nle_rec,rec.categ_rec,rec.desc_rec);
 
 }
         fclose(f);
         fclose(f2);
 remove(filename);
 rename("aux.txt", filename);
-        return 1;
+       
     }
 }
 
-reclamation chercher(int id_rec, char * filename)
+reclamation chercher(char id_rec[20], char * filename)
 {
 reclamation rec; 
 int tr=0;
+strcpy(rec.id_rec," ");
     FILE * f=fopen(filename, "r");
  if(f!=NULL )
     {
-while((fscanf(f,"%d %d %d %d %d %d %s %s\n",&rec.id_rec,rec.date_rec.jour_rec,rec.date_rec.mois_rec,rec.date_rec.annee_rec,&rec.nbv_rec,&rec.nle_rec,rec.categ_rec,rec.desc_rec)!=EOF) && (tr==0))
-{if(id_rec==rec.id_rec)
+while((fscanf(f,"%s %d %d %d %s %s %s %s\n",rec.id_rec,&rec.date_rec.jour_rec,&rec.date_rec.mois_rec,&rec.date_rec.annee_rec,rec.nbv_rec,rec.nle_rec,rec.categ_rec,rec.desc_rec)!=EOF) && (tr==0))
+{if(strcmp(id_rec,rec.id_rec)==0){
 tr=1;
+fclose(f);}
 }
-fclose(f);
+}
 if(tr==0)
-rec.id_rec=-1;
-}
+strcpy(rec.id_rec,"-1");
+
 
 return rec;
 
-}*/
+}
 
-void afficher_rec (GtkWidget *liste) 
+void afficher_rec (GtkWidget *liste, char*filname) 
 {	
 	GtkCellRenderer *renderer;
 	GtkTreeViewColumn *column;
@@ -177,14 +180,14 @@ void afficher_rec (GtkWidget *liste)
 	
 	store = gtk_list_store_new(COLUMNS,G_TYPE_STRING,G_TYPE_INT,G_TYPE_INT,G_TYPE_INT,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING);
 
-	f=fopen("reclamation.txt","r");
+	f=fopen(filname,"r");
 	if(f==NULL)
 	{
 		return;
 	}
 	else
 	{
-		f = fopen("reclamation.txt","r");
+		
 		while(fscanf(f,"%s %d %d %d %s %s %s %s\n",rec.id_rec,&rec.date_rec.jour_rec,&rec.date_rec.mois_rec,&rec.date_rec.annee_rec,rec.nbv_rec,rec.nle_rec,rec.categ_rec,rec.desc_rec)!=EOF)
 		{
 		

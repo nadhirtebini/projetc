@@ -19,44 +19,44 @@ on_tableau_row_activated               (GtkTreeView     *treeview,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
 {
-GtkTreeIter iter;
-	gchar* id_rec;
-	gint * jour_rec;
-	gint * mois_rec;
-	gint * annee_rec;
-	gchar* nle_rec;
-	gchar* nbv_rec;
-	gchar* categ_rec;
-	gchar* desc_rec;
-	reclamation rec;
-	
-	GtkTreeModel *model = gtk_tree_view_get_model(treeview);
-	if(gtk_tree_model_get_iter(model,&iter,path))
-	{
-		gtk_tree_model_get(GTK_LIST_STORE(model),&iter,0,&id_rec,1,&jour_rec,2,&mois_rec,3,&annee_rec,4,&nle_rec,5,&nbv_rec,6,&categ_rec,7,&desc_rec,-1);
-		strcpy(rec.id_rec,id_rec);
-		rec.date_rec.jour_rec=jour_rec;
-		rec.date_rec.mois_rec=mois_rec;
-		rec.date_rec.annee_rec=annee_rec;
-		strcpy(rec.nle_rec,nle_rec);
-		strcpy(rec.nbv_rec,nbv_rec);
-	        strcpy(rec.categ_rec,categ_rec);
-		strcpy(rec.desc_rec,desc_rec);
-		afficher_rec(treeview);
-}
+
 }
 
 
 void
-on_rechercher_clicked                  (GtkButton       *button,
+on_rechercher_clicked                  (GtkButton       *objet,
                                         gpointer         user_data)
 {
+GtkWidget *fenetre_afficher,*w1;
 
+GtkWidget *treeview;
+
+GtkWidget  *id_entry;
+reclamation rec ;
+char id[20];
+id_entry = lookup_widget (objet,"entry1");
+strcpy(id,gtk_entry_get_text(GTK_ENTRY(id_entry)));
+
+rec=chercher(id,"reclamation.txt");
+ FILE *f=fopen("search.txt","w");
+if(f!=NULL){
+        fprintf(f," %s %d %d %d %s %s %s %s \n",rec.id_rec,rec.date_rec.jour_rec,rec.date_rec.mois_rec,rec.date_rec.annee_rec,rec.nbv_rec,rec.nle_rec,rec.categ_rec,rec.desc_rec);
+      
+   
+}
+ fclose(f);
+w1=lookup_widget(objet,"affichage");
+fenetre_afficher=create_affichage();
+gtk_widget_hide(fenetre_afficher);
+gtk_widget_hide(w1);
+gtk_widget_show(fenetre_afficher);
+treeview=lookup_widget(fenetre_afficher,"tableau");
+afficher_rec(treeview,"search.txt");
 }
 
 
 void
-on_supprimer_clicked                   (GtkButton       *button,
+on_supprimer_clicked                   (GtkButton       *objet,
                                         gpointer         user_data)
 {
 
@@ -194,7 +194,33 @@ fenetre_afficher=lookup_widget(objet,"affichage");
 fenetre_afficher=create_affichage();
 gtk_widget_show(fenetre_afficher);
 treeview=lookup_widget(fenetre_afficher,"tableau");
-afficher_rec(treeview);
+afficher_rec(treeview,"reclamation.txt");
 
+}
+
+
+void
+on_supp_rec_clicked                    (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+char supp [20];
+reclamation rec ;
+
+GtkWidget *fenetre_afficher,*sup,*w1;
+GtkWidget *treeview;
+
+sup= lookup_widget (objet,"entrysupp" );
+strcpy(supp,gtk_entry_get_text(GTK_ENTRY(sup)));
+supprimer_rec( supp ,"reclamation.txt");
+
+w1=lookup_widget(objet,"affichage");
+fenetre_afficher=create_affichage();
+gtk_widget_hide(fenetre_afficher);
+gtk_widget_hide(w1);
+
+gtk_widget_show(fenetre_afficher);
+
+treeview=lookup_widget(fenetre_afficher,"tableau");
+afficher_rec(treeview,"reclamation.txt");
 }
 

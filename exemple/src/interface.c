@@ -469,3 +469,80 @@ create_remplissage (void)
   return remplissage;
 }
 
+GtkWidget*
+create_supprimer (void)
+{
+  GtkWidget *supprimer;
+  GtkWidget *fixed3;
+  GtkWidget *entrysupp;
+  GtkWidget *message;
+  GtkWidget *label15;
+  GtkWidget *supp_rec;
+  GtkWidget *alignment7;
+  GtkWidget *hbox7;
+  GtkWidget *image7;
+  GtkWidget *label14;
+
+  supprimer = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title (GTK_WINDOW (supprimer), _("window1"));
+
+  fixed3 = gtk_fixed_new ();
+  gtk_widget_show (fixed3);
+  gtk_container_add (GTK_CONTAINER (supprimer), fixed3);
+
+  entrysupp = gtk_entry_new ();
+  gtk_widget_show (entrysupp);
+  gtk_fixed_put (GTK_FIXED (fixed3), entrysupp, 112, 80);
+  gtk_widget_set_size_request (entrysupp, 160, 27);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entrysupp), 8226);
+
+  message = gtk_label_new ("");
+  gtk_widget_show (message);
+  gtk_fixed_put (GTK_FIXED (fixed3), message, 136, 224);
+  gtk_widget_set_size_request (message, 168, 17);
+
+  label15 = gtk_label_new (_("Id"));
+  gtk_widget_show (label15);
+  gtk_fixed_put (GTK_FIXED (fixed3), label15, 40, 88);
+  gtk_widget_set_size_request (label15, 49, 17);
+
+  supp_rec = gtk_button_new ();
+  gtk_widget_show (supp_rec);
+  gtk_fixed_put (GTK_FIXED (fixed3), supp_rec, 152, 136);
+  gtk_widget_set_size_request (supp_rec, 96, 29);
+
+  alignment7 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment7);
+  gtk_container_add (GTK_CONTAINER (supp_rec), alignment7);
+
+  hbox7 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox7);
+  gtk_container_add (GTK_CONTAINER (alignment7), hbox7);
+
+  image7 = gtk_image_new_from_stock ("gtk-delete", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image7);
+  gtk_box_pack_start (GTK_BOX (hbox7), image7, FALSE, FALSE, 0);
+
+  label14 = gtk_label_new_with_mnemonic (_("supprimer "));
+  gtk_widget_show (label14);
+  gtk_box_pack_start (GTK_BOX (hbox7), label14, FALSE, FALSE, 0);
+
+  g_signal_connect ((gpointer) supp_rec, "clicked",
+                    G_CALLBACK (on_supp_rec_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (supprimer, supprimer, "supprimer");
+  GLADE_HOOKUP_OBJECT (supprimer, fixed3, "fixed3");
+  GLADE_HOOKUP_OBJECT (supprimer, entrysupp, "entrysupp");
+  GLADE_HOOKUP_OBJECT (supprimer, message, "message");
+  GLADE_HOOKUP_OBJECT (supprimer, label15, "label15");
+  GLADE_HOOKUP_OBJECT (supprimer, supp_rec, "supp_rec");
+  GLADE_HOOKUP_OBJECT (supprimer, alignment7, "alignment7");
+  GLADE_HOOKUP_OBJECT (supprimer, hbox7, "hbox7");
+  GLADE_HOOKUP_OBJECT (supprimer, image7, "image7");
+  GLADE_HOOKUP_OBJECT (supprimer, label14, "label14");
+
+  return supprimer;
+}
+

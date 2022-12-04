@@ -8,7 +8,7 @@ on_tableau_row_activated               (GtkTreeView     *treeview,
                                         gpointer         user_data);
 
 void
-on_rechercher_clicked                  (GtkButton       *button,
+on_rechercher_clicked                  (GtkButton       *objet,
                                         gpointer         user_data);
 
 void
@@ -57,4 +57,8 @@ on_ajouter2_rec_clicked                (GtkButton       *objet,
 
 void
 on_afficher_rec_clicked                (GtkButton       *objet,
+                                        gpointer         user_data);
+
+void
+on_supp_rec_clicked                    (GtkButton       *objet,
                                         gpointer         user_data);
